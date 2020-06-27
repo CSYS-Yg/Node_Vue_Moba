@@ -35,6 +35,19 @@ app.get('/create', (req, res) => {
     })
 })
 
+// 创建数据表
+app.get('/create_table', (req, res) => {
+    let sql = "CREATE TABLE posts(id int AUTO_INCREMENT,title VARCHAR(255),body VARCHAR(255),PRIMARY KEY(ID))"
+    db.query(sql, (err, result) => {  // 两个参数，第一个参数固定接收错误
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(result);
+            res.send('创建表格成功')
+        }
+    })
+})
+
 // 开启一个服务器
 app.listen(3000, () => {
     console.log("127.0.0.1:3000")
