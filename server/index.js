@@ -23,7 +23,7 @@ db.connect((err) => {
 })
 
 // 创建数据库测试
-app.get('/test', (req, res) => {
+app.get('/create', (req, res) => {
     let sql = "CREATE DATABASE nodemysql"
     db.query(sql, (err, result) => {  // 两个参数，第一个参数固定接收错误
         if (err) {
