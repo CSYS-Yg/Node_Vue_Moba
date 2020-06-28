@@ -14,7 +14,7 @@ const db = mysql.createConnection({
     host: 'localhost', // 地址
     user: 'root',      // 数据库名 
     password: 'yuguang', // 密码
-    database: 'nodemysql' //数据库名字
+    database: 'nodemysql' //数据库名字，未创建不需配置
 })
 
 db.connect((err) => {
