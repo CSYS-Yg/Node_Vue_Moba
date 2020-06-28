@@ -1,12 +1,9 @@
 <template>
-    <div>
-        123456
-    </div>
+    <div>123456</div>
 </template>
 
 <script>
 export default {};
 </script>
 
-<style>
-</style>
+<style lang="stylus" scoped></style>

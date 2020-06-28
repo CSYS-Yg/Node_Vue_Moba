@@ -21,6 +21,11 @@ const routers = [
                 path: 'diary',
                 meta: { title: '健身日记' },
                 component: () => import('~/pages/fitness/diary/index.vue')
+            },
+            {
+                path: 'addNotes',
+                meta: { title: '新增记录' },
+                component: () => import('~/pages/fitness/addNotes/index.vue')
             }
         ]
     },
