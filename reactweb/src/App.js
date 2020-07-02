@@ -1,26 +1,41 @@
 import React from 'react';
 import './App.css';
-import ReactDOM from 'react-dom';
-class Welcome extends React.Component {
+// import ReactDOM from 'react-dom';
+
+class Clock extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { date: new Date() };
+    }
+    // componentDidMount() 方法会在组件已经被渲染到 DOM 中后运行
+    // 组件第一次被渲染到 DOM 中的时候 称为挂载（mount）
+    componentDidMount() {
+        this.timerID = setInterval(
+            () => this.tick(),
+            1000
+        );
+    }
+    // 当 DOM 中 Clock 组件被删除的时候 称为 “卸载（unmount）”。
+    componentWillUnmount() {
+        clearInterval(this.timerID);
+    }
+
+    tick() {
+        this.setState({
+            date: new Date()
+        });
+    }
+    
     render() {
-        return <h1>Hello, {this.props.name}</h1>;
+        return (<div>
+            <h1>Hello, world!</h1>
+            <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+        </div>)
     }
 }
+
 function App() {
-    function formatName(user) {
-        return user.firstName + ' ' + user.lastName;
-    }
-    const name = {
-        firstName: '123',
-        lastName: '456',
-    };
-    const element = (<div> <Welcome name="Sara" /> <Welcome name="Sara1" /> <Welcome name="Sara2" /> </div>)
-    setTimeout(() => {
-        return ReactDOM.render(<h1>Hello, {formatName(name)}</h1>, document.getElementById('root'));
-    }, 4000)
-    return element
-
-
+    return <Clock />
 }
 
 export default App;
