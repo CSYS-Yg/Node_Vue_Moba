@@ -12,11 +12,10 @@
             layout="horizontal"
             :label-col="{ span: 1 }"
             :wrapper-col="{ span: 6 }"
+            :form="form"
         >
-            <squat></squat>
-            <a-form-model-item>
-                <a-button type="primary">Submit</a-button>
-            </a-form-model-item>
+            <squat :data.sync="form.squatData"></squat>
+            <squat :data.sync="form.deadlift"></squat>
         </a-form-model>
     </div>
 </template>
@@ -26,13 +25,45 @@ import date from "~/assets/util/reuseJs/date.js";
 import squat from "./components/squat";
 import moment from "moment";
 export default {
-    componets: {
+    components: {
         squat
     },
     data() {
         this.dateFormat = "YYYY-MM-DD";
         return {
-            week: ""
+            week: "",
+            form: {
+                // 深蹲数据
+                squatData: [
+                    {
+                        weight: "",
+                        frequency: ""
+                    },
+                    {
+                        weight: "",
+                        frequency: ""
+                    },
+                    {
+                        weight: "",
+                        frequency: ""
+                    },
+                    {
+                        weight: "",
+                        frequency: ""
+                    }
+                ],
+                // 硬拉
+                deadlift: [
+                    {
+                        weight: "",
+                        frequency: ""
+                    },
+                    {
+                        weight: "",
+                        frequency: ""
+                    }
+                ]
+            }
         };
     },
     mounted() {

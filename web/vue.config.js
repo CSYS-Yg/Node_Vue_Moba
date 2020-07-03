@@ -7,7 +7,6 @@ module.exports = {
             alias: { '~': resolve('src') }
         }
     }
-
 }
 
 function resolve(dir) {
