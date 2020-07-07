@@ -1,6 +1,6 @@
 <template>
     <div>
-        <!-- <a-divider>深蹲目标</a-divider>
+        <a-divider>深蹲目标</a-divider>
         <div class="text-center">
             <p>
                 第一组：训练重量：80% * 次数：6 次
@@ -9,7 +9,7 @@
                 <br />第四组：训练重量：80% * 次数：6 次
                 <br />
             </p>
-        </div> -->
+        </div>
         <a-form-model-item
             v-for="(item,index) in data"
             :key="index"
