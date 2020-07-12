@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 // import ReactDOM from 'react-dom';
 
 class Clock extends React.Component {
