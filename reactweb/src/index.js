@@ -16,8 +16,6 @@ ReactDOM.render(
             </Route>
         </ReactLayout>
     </Router>
-
-
     // </React.StrictMode>
     , document.getElementById('root')
 );
