@@ -4,22 +4,20 @@ import './index.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
 
-import { Button } from 'antd';
 
-const App = () => {
-    return (<Button type="primary" shape="round">
-        Download
-    </Button>)
-}
+import ReactLayout from '../src/layout/index'
+import Dashboard from '../src/pages/dashboard/index'
 
 ReactDOM.render(
     // <React.StrictMode>
     <Router>
-        <Route path="/" component={App}>
-            {/* <Route path="about" component={About} />
-      <Route path="inbox" component={Inbox} /> */}
-        </Route>
+        <ReactLayout>
+            <Route path="/" component={Dashboard}>
+            </Route>
+        </ReactLayout>
     </Router>
+
+
     // </React.StrictMode>
     , document.getElementById('root')
 );

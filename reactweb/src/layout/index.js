@@ -1,40 +1,39 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
+import { Layout, Menu, Breadcrumb } from 'antd';
 
-class Clock extends React.Component {
+const { Header, Content, Footer } = Layout;
+
+class ReactLayout extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { date: new Date() };
+        this.state = {}
     }
-    // componentDidMount() 方法会在组件已经被渲染到 DOM 中后运行
-    // 组件第一次被渲染到 DOM 中的时候 称为挂载（mount）
-    componentDidMount() {
-        this.timerID = setInterval(
-            () => this.tick(),
-            1000
-        );
-    }
-    // 当 DOM 中 Clock 组件被删除的时候 称为 “卸载（unmount）”。
-    componentWillUnmount() {
-        clearInterval(this.timerID);
-    }
-
-    tick() {
-        this.setState({
-            date: new Date()
-        });
-    }
-    
     render() {
-        return (<div>
-            <h1>Hello, world!</h1>
-            <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-        </div>)
+        return (
+            <Layout className="layout">
+                <Header>
+                    <div className="logo" />
+                    <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
+                        <Menu.Item key="1">nav 1</Menu.Item>
+                        <Menu.Item key="2">nav 2</Menu.Item>
+                        <Menu.Item key="3">nav 3</Menu.Item>
+                    </Menu>
+                </Header>
+                <Content style={{ padding: '0 50px' }}>
+                    <Breadcrumb style={{ margin: '16px 0' }}>
+                        <Breadcrumb.Item>Home</Breadcrumb.Item>
+                        <Breadcrumb.Item>List</Breadcrumb.Item>
+                        <Breadcrumb.Item>App</Breadcrumb.Item>
+                    </Breadcrumb>
+                    <div className="site-layout-content">{
+                        React.Children.map(this.props.children, function (child) {
+                            return <div>{child}</div>;
+                        })
+                    }</div>
+                </Content>
+                <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+            </Layout>
+        )
     }
 }
-
-function App() {
-    return <Clock />
-}
-
-export default App;
+export default ReactLayout;
