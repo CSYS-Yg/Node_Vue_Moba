@@ -11,10 +11,6 @@ import menuList from './menu'
 const { Header, Content, Footer } = Layout;
 const { SubMenu } = Menu;
 
-const menuListDom = menuList.map((menu) =>
-    <Menu.Item key={menu.id} icon={<Icon type={menu.icon} />}>{menu.title}</Menu.Item>
-);
-
 class ReactLayout extends React.Component {
 
     state = {
