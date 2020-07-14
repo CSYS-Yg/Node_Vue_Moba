@@ -48,6 +48,28 @@ app.get('/create_table', (req, res) => {
     })
 })
 
+// 查询数据表
+app.get('/getMeunList', (req, res) => {
+    let sql = `
+    SELECT
+    meun.id,
+        meun.parents_id,
+        meun.title,
+        meun.iconClass,
+        meun.page_url,
+        meun.is_show
+    FROM
+    meun
+    `
+    db.query(sql, (err, result) => {  // 两个参数，第一个参数固定接收错误
+        if (err) {
+            console.log(err)
+        } else {
+            res.send(result)
+        }
+    })
+})
+
 // 开启一个服务器
 app.listen(3000, () => {
     console.log("127.0.0.1:3000")
