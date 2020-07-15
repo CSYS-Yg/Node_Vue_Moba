@@ -48,24 +48,28 @@ app.get('/create_table', (req, res) => {
     })
 })
 
+// 递归 拼接菜单
+let meunList = []
+function spliceMeun(parentId, childen) {
+    for (let i = 0; i < meunList.length; i++) {
+        if (meunList[i].parents_id == parentId) {
+            meunList[i].childItem = []
+            childen.push(meunList[i])
+            spliceMeun(meunList[i].id, meunList[i].childItem)
+        }
+    }
+    return childen
+}
+
 // 查询数据表
 app.get('/getMeunList', (req, res) => {
-    let sql = `
-    SELECT
-    meun.id,
-        meun.parents_id,
-        meun.title,
-        meun.iconClass,
-        meun.page_url,
-        meun.is_show
-    FROM
-    meun
-    `
+    let sql = `SELECT * FROM meun`
     db.query(sql, (err, result) => {  // 两个参数，第一个参数固定接收错误
         if (err) {
             console.log(err)
         } else {
-            res.send(result)
+            meunList = result
+            res.send({ status: 200, data: spliceMeun(null, []) })
         }
     })
 })

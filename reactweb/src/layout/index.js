@@ -7,6 +7,7 @@ import React from 'react';
 import { Layout, Menu } from 'antd';
 import menuList from './menu'
 
+import load from '../assets/util/api/load';
 
 const { Header, Content, Footer } = Layout;
 const { SubMenu } = Menu;
@@ -16,6 +17,12 @@ class ReactLayout extends React.Component {
     state = {
         current: 'mail',
     };
+    componentDidMount() {
+        console.log('123')
+        load.getMeunList({}).then(res => {
+            console.log(res)
+        })
+    }
     handleClick = e => {
         console.log('click ', e);
         this.setState({ current: e.key });
@@ -33,12 +40,12 @@ class ReactLayout extends React.Component {
                     <Menu onClick={this.handleClick} selectedKeys={[current]} theme="dark" mode="horizontal">
                         {
                             menuList.map((menu) => {
-                                if (menu.subMenu && menu.subMenu.length > 0) {
+                                if (menu.childItem && menu.childItem.length > 0) {
                                     return <SubMenu icon={<Icon type={menu.iconClass} />} title={menu.title}>
-                                        {menu.subMenu.map((subMenu) => {
-                                            return <Menu.ItemGroup title={subMenu.typeName}>
+                                        {menu.childItem.map((child) => {
+                                            return <Menu.ItemGroup title={child.title}>
                                                 {
-                                                    subMenu.childItem.map((child) => {
+                                                    child.childItem.map((child) => {
                                                         return <Menu.Item key={child.id}>{child.title}</Menu.Item>
                                                     })
                                                 }
