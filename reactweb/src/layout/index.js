@@ -5,7 +5,6 @@ import Icon from '../assets/iconfont/index'
 
 import React from 'react';
 import { Layout, Menu } from 'antd';
-import menuList from './menu'
 
 import load from '../assets/util/api/load';
 
@@ -13,14 +12,11 @@ const { Header, Content, Footer } = Layout;
 const { SubMenu } = Menu;
 
 class ReactLayout extends React.Component {
-
-    state = {
-        current: 'mail',
-    };
     componentDidMount() {
-        console.log('123')
         load.getMeunList({}).then(res => {
-            console.log(res)
+            this.setState({
+                menuList: res.data
+            })
         })
     }
     handleClick = e => {
@@ -29,7 +25,10 @@ class ReactLayout extends React.Component {
     };
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            current: '1',
+            menuList: []
+        };
     }
     render() {
         const { current } = this.state;
@@ -39,11 +38,11 @@ class ReactLayout extends React.Component {
                     <div className="logo" />
                     <Menu onClick={this.handleClick} selectedKeys={[current]} theme="dark" mode="horizontal">
                         {
-                            menuList.map((menu) => {
+                            this.state.menuList.map((menu) => {
                                 if (menu.childItem && menu.childItem.length > 0) {
-                                    return <SubMenu icon={<Icon type={menu.iconClass} />} title={menu.title}>
+                                    return <SubMenu key={menu.id} icon={<Icon type={menu.iconClass} />} title={menu.title}>
                                         {menu.childItem.map((child) => {
-                                            return <Menu.ItemGroup title={child.title}>
+                                            return <Menu.ItemGroup key={child.id} title={child.title}>
                                                 {
                                                     child.childItem.map((child) => {
                                                         return <Menu.Item key={child.id}>{child.title}</Menu.Item>

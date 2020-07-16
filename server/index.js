@@ -22,6 +22,15 @@ db.connect((err) => {
     console.log('数据库连接成功')
 })
 
+
+// 配置请求头信息
+app.all("*", function (req, res, next) {
+    // res.header("Access-Control-Allow-Origin", "*"); // “Access-Control-Allow-Origin”表示允许跨域访问，“*”表示允许所有来源进行跨域访问，这里也可以替换为特定的域名或ip。 
+    // res.header("Access-Control-Allow-Methods", "GET,POST,DELETE,PUT,OPTIONS,HEAD,FETCH"); // 设置请求方式
+    // res.header("Access-control-Allow-Headers", "xCors");    //允许请求头中携带 xCors
+    next();
+})
+
 // 创建数据库测试
 app.get('/create', (req, res) => {
     let sql = "CREATE DATABASE nodemysql"
@@ -69,7 +78,7 @@ app.get('/getMeunList', (req, res) => {
             console.log(err)
         } else {
             meunList = result
-            res.send({ status: 200, data: spliceMeun(null, []) })
+            res.send({ data: spliceMeun(null, []) })
         }
     })
 })
