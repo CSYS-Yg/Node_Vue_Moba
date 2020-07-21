@@ -12,7 +12,9 @@ ReactDOM.render(
     // <React.StrictMode>
     <Router>
         <ReactLayout>
-            <Route path="/" component={Dashboard}>
+            <Route path="/" exact component={Dashboard}>
+            </Route>
+            <Route path="/training" component={Dashboard}>
             </Route>
         </ReactLayout>
     </Router>

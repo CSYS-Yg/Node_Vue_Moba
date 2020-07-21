@@ -5,6 +5,7 @@ import Icon from '../assets/iconfont/index'
 
 import React from 'react';
 import { Layout, Menu } from 'antd';
+import { Link } from 'react-router-dom'
 
 import load from '../assets/util/api/load';
 
@@ -19,8 +20,7 @@ class ReactLayout extends React.Component {
             })
         })
     }
-    handleClick = e => {
-        console.log('click ', e);
+    onSelect = e => {
         this.setState({ current: e.key });
     };
     constructor(props) {
@@ -33,10 +33,10 @@ class ReactLayout extends React.Component {
     render() {
         const { current } = this.state;
         return (
-            <Layout>
-                <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+            <Layout theme="light">
+                <Header style={{ position: 'fixed', zIndex: 1, width: '100%', backgroundColor: '#ffffff', boxShadow: '0 2px 8px #f0f1f2' }}>
                     <div className="logo" />
-                    <Menu onClick={this.handleClick} selectedKeys={[current]} theme="dark" mode="horizontal">
+                    <Menu onClick={this.onSelect} selectedKeys={[current]} mode="horizontal">
                         {
                             this.state.menuList.map((menu) => {
                                 if (menu.childItem && menu.childItem.length > 0) {
@@ -45,14 +45,14 @@ class ReactLayout extends React.Component {
                                             return <Menu.ItemGroup key={child.id} title={child.title}>
                                                 {
                                                     child.childItem.map((child) => {
-                                                        return <Menu.Item key={child.id}>{child.title}</Menu.Item>
+                                                        return <Menu.Item key={child.id}><Link to={child.page_url || '/'}>{child.title}</Link></Menu.Item>
                                                     })
                                                 }
                                             </Menu.ItemGroup>
                                         })}
                                     </SubMenu>
                                 } else {
-                                    return <Menu.Item key={menu.id} icon={<Icon type={menu.iconClass} />}>{menu.title}</Menu.Item>
+                                    return <Menu.Item key={menu.id} icon={<Icon type={menu.iconClass} />}><Link to={menu.page_url}>{menu.title}</Link></Menu.Item>
                                 }
                             }
                             )
