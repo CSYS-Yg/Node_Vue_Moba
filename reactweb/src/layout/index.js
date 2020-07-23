@@ -18,11 +18,18 @@ class ReactLayout extends React.Component {
             this.setState({
                 menuList: res.data
             })
+            console.log(this.props)
+            // this.setCurrent(res.data)
         })
     }
     onSelect = e => {
         this.setState({ current: e.key });
     };
+    setCurrent(list) {
+        for (let i in list) {
+
+        }
+    }
     constructor(props) {
         super(props);
         this.state = {
@@ -59,14 +66,14 @@ class ReactLayout extends React.Component {
                         }
                     </Menu>
                 </Header>
-                <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
+                <Content className="site-layout" style={{ padding: '15px', marginTop: 64, backgroundColor: '#ffffff' }}>
                     <div className="site-layout-content">{
                         React.Children.map(this.props.children, function (child) {
                             return <div>{child}</div>;
                         })
                     }</div>
                 </Content>
-                <Footer style={{ width: '100%', textAlign: 'center', position: 'fixed', bottom: 0 }}>Ant Design ©2018 Created by Ant UED</Footer>
+                <Footer style={{ width: '100%', textAlign: 'center', position: 'fixed', bottom: 0 }}>BY YuGuangMengYi</Footer>
             </Layout >
         )
     }
