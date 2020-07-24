@@ -1,0 +1,20 @@
+{
+    "name": "ygtoolwebsite",
+    "version": "1.0.0",
+    "description": "node 开发移动端与管理端界面及后端 Api 的实现",
+    "devDependencies": {},
+    "scripts": {
+        "serve": "cd server && npm run serve",
+        "serveWeb": "cd reactweb && npm run serve"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/CSYS-Yg/YgToolWebsite.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/CSYS-Yg/YgToolWebsite/issues"
+    },
+    "homepage": "https://github.com/CSYS-Yg/YgToolWebsite#readme"
+}

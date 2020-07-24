@@ -18,18 +18,17 @@ class ReactLayout extends React.Component {
             this.setState({
                 menuList: res.data
             })
-            console.log(this.props)
+            console.log(window.location.pathname)
             // this.setCurrent(res.data)
         })
     }
     onSelect = e => {
         this.setState({ current: e.key });
     };
-    setCurrent(list) {
-        for (let i in list) {
-
-        }
-    }
+    // setCurrent(list) {
+    //     for (let i in list) {
+    //     }
+    // }
     constructor(props) {
         super(props);
         this.state = {
