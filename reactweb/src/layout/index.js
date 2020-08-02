@@ -65,7 +65,7 @@ class ReactLayout extends React.Component {
                         }
                     </Menu>
                 </Header>
-                <Content className="site-layout" style={{ padding: '15px', marginTop: 64, backgroundColor: '#ffffff' }}>
+                <Content className="site-layout" style={{ padding: '15px', marginTop: 64, backgroundColor: '#f0f2f5' }}>
                     <div className="site-layout-content">{
                         React.Children.map(this.props.children, function (child) {
                             return <div>{child}</div>;
