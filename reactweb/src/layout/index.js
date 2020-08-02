@@ -18,17 +18,28 @@ class ReactLayout extends React.Component {
             this.setState({
                 menuList: res.data
             })
-            console.log(window.location.pathname)
-            // this.setCurrent(res.data)
+            this.getCurrent(window.location.pathname, res.data)
         })
     }
+    // 点击菜单设置事件
     onSelect = e => {
         this.setState({ current: e.key });
     };
-    // setCurrent(list) {
-    //     for (let i in list) {
-    //     }
-    // }
+    // 查找菜单 id  
+    getCurrent(pathname, list) {
+        if (pathname === '/') {
+            this.setState({ current: '1' });
+            return
+        }
+        list.forEach(element => {
+            if (element.page_url === pathname) {
+                this.setState({ current: element.id.toString() });
+                return
+            } else if (element.childItem) {
+                this.getCurrent(pathname, element.childItem)
+            }
+        });
+    }
     constructor(props) {
         super(props);
         this.state = {
