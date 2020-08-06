@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 
 import load from '../assets/util/api/load';
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;  // Footer
 const { SubMenu } = Menu;
 
 class ReactLayout extends React.Component {
@@ -76,14 +76,14 @@ class ReactLayout extends React.Component {
                         }
                     </Menu>
                 </Header>
-                <Content className="site-layout" style={{ padding: '15px', marginTop: 64, backgroundColor: '#f0f2f5' }}>
+                <Content className="site-layout" style={{ padding: '15px', marginTop: 64, marginBottom: 0, backgroundColor: '#f0f2f5' }}>
                     <div className="site-layout-content">{
                         React.Children.map(this.props.children, function (child) {
                             return <div>{child}</div>;
                         })
                     }</div>
                 </Content>
-                <Footer style={{ width: '100%', textAlign: 'center', position: 'fixed', bottom: 0 }}>BY YuGuangMengYi</Footer>
+                {/* <Footer style={{ width: '100%', textAlign: 'center', position: 'fixed', bottom: 0 }}>BY YuGuangMengYi</Footer> */}
             </Layout >
         )
     }

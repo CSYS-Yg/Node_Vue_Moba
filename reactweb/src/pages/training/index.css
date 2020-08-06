@@ -1,0 +1,9 @@
+#training-page {}
+
+#training-page .input-box {
+    display: flex;
+}
+
+#training-page .input-strength {
+    margin: 0px 20px 0px 0px;
+}

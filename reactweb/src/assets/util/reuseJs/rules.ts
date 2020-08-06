@@ -2,6 +2,10 @@
 const rules: any = {
     name: [{ required: true, message: '请选择当前时间' }],
     number: [{ required: true, message: '请选择当前时间' }],
+    number1: [
+        'select',
+        { rules: [{ required: true, message: 'Please select your country!' }] },
+    ],
 }
 
 function setRules(key: string, message?: string) {
@@ -9,7 +13,7 @@ function setRules(key: string, message?: string) {
     if (message) {
         rule[0].message = message
     }
-    return rule[0]
+    return rule
 }
 
 export { setRules }
