@@ -25,7 +25,7 @@ class Training extends Component<time, state> {
                 <CardTips title={tips.title} content="今日计划详情"></CardTips>
                 <Row gutter={16}>
                     <Col className="gutter-row" span={24}>
-                        <Card style={{ marginTop: '15px'}} title="第一组" bordered={false}>
+                        <Card style={{ marginTop: '15px' }} title="计划填写" bordered={false}>
                             <StepsPlan></StepsPlan>
                         </Card>
                     </Col>

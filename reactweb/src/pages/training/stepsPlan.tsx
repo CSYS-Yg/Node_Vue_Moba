@@ -1,37 +1,29 @@
 
 import React, { Component } from 'react'
-// 定义接口
 import { Steps, Button, message } from 'antd';
 
 import EntryPlan from "./entryPlan";
 
+// 导入接口
+import TrainingApi from '../../assets/util/api/training';
 const { Step } = Steps;
 
-const steps = [
-    {
-        title: '第一组',
-        content: 'First-content',
-    },
-    {
-        title: '第二组',
-        content: 'Second-content',
-    },
-    {
-        title: '第三组',
-        content: 'Last-content',
-    },
-    {
-        title: '第四组',
-        content: 'Last-content',
-    },
-];
-
-
+// 定于 StepsList 的数组对象的数据项
+class StepsList {
+    'title': string;
+    'group_times': string;
+}
 interface state {
     current: number
+    steps: Array<StepsList>
 }
 
 class StepsPlan extends Component<{}, state> {
+    componentDidMount() {
+        TrainingApi.getTrainingGroup({ training_date: 'sunday' }).then(res => {
+            this.setState({ steps: res.data });
+        })
+    }
     next() {
         const current = this.state.current + 1;
         this.setState({ current });
@@ -43,14 +35,16 @@ class StepsPlan extends Component<{}, state> {
     }
     state: state = {
         current: 0,
+        steps: [],
     }
     render() {
-        const { current } = this.state;
+        const { current, steps } = this.state;
         return (<>
             <div className="steps-box">
+
                 <Steps current={current}>
                     {steps.map(item => (
-                        <Step key={item.title} title={item.title} />
+                        <Step key={item.group_times} title={item.title} />
                     ))}
                 </Steps>
                 <div className="steps-content">

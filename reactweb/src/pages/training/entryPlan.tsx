@@ -1,9 +1,9 @@
 // 计划录入组件
-
 import React, { Component } from 'react'
-// 定义接口
-import { DatePicker, Form, Input } from 'antd';
+import { Form, Input } from 'antd';
 
+// 导入接口
+import TrainingApi from '../../assets/util/api/training';
 // 导入规则方法
 // import { setRules } from "../../../assets/util/reuseJs/rules";
 
@@ -12,17 +12,45 @@ const layout = {
     wrapperCol: { span: 18 },
 };
 
-
-function onChange(date: any, dateString: any) {
-    console.log(date, dateString);
+class Detail {
+    "action_name": string
+    "frequency_claim": string
+    "frequency_unit": string
+    "id": number
+    "training_order": number
+    "weight_claim": string
+    "weight_unit": string
 }
 
-class EntryPlan extends Component<{}, {}> {
+
+interface state {
+    detailList: Array<Detail>
+}
+
+// function onChange(date: any, dateString: any) {
+//     console.log(date, dateString);
+// }
+
+class EntryPlan extends Component<{}, state> {
     static defaultProps = {
         title: '暂无数据',
         content: '暂无数据'
     }
+    state: state = {
+        detailList: [],
+    }
+    componentDidMount() {
+        this.getTrainingDetails()
+    }
+    getTrainingDetails(item: object | null = null) {
+        let param = item || { group_times: '1', training_date: 'sunday' }
+        TrainingApi.getTrainingDetails(param).then(res => {
+            console.log("EntryPlan -> componentDidMount -> res.data", res.data)
+            this.setState({ detailList: res.data });
+        })
+    }
     render() {
+        const { detailList } = this.state;
         const onFinish = (values: any) => {
             console.log('Success:', values);
         };
@@ -38,66 +66,17 @@ class EntryPlan extends Component<{}, {}> {
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
             >
-                <Form.Item
-                    label="记录时间"
-                    rules={[{ required: true, message: '请选择当前时间' }]}
-                >
-                    <DatePicker onChange={onChange} />
-                </Form.Item>
-                <Form.Item
-                    label="深蹲"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
-                >
-                    <div className="input-box">
-                        <Input className="input-strength" addonBefore="训练重量：70% 最大重量" addonAfter="KG" />
-                        <Input className="input-strength" addonBefore="次数：8 次" addonAfter="次" />
-                    </div>
-                </Form.Item>
-                <Form.Item
-                    label="硬拉"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
-                >
-                    <div className="input-box">
-                        <Input className="input-strength" addonBefore="训练重量：70% 最大重量" addonAfter="KG" />
-                        <Input className="input-strength" addonBefore="次数：8 次" addonAfter="次" />
-                    </div>
-                </Form.Item>
-                <Form.Item
-                    label="箭步蹲"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
-                >
-                    <div className="input-box">
-                        <Input className="input-strength" addonBefore="训练重量：正常负重" addonAfter="KG" />
-                        <Input className="input-strength" addonBefore="次数：8-12 次" addonAfter="次" />
-                    </div>
-                </Form.Item>
-                <Form.Item
-                    label="正手引体向上（负重）"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
-                >
-                    <div className="input-box">
-                        <Input className="input-strength" addonBefore="训练重量：负重" addonAfter="KG" />
-                        <Input className="input-strength" addonBefore="个数：8 个" addonAfter="个" />
-                    </div>
-                </Form.Item>
-                <Form.Item
-                    label="YTWL 飞鸟"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
-                >
-                    <div className="input-box">
-                        <Input className="input-strength" addonBefore="训练重量：负重" addonAfter="KG" />
-                        <Input className="input-strength" addonBefore="个数：8-12 次" addonAfter="次" />
-                    </div>
-                </Form.Item>
-                <Form.Item
-                    label="农夫行走"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
-                >
-                    <div className="input-box">
-                        <Input className="input-strength" addonBefore="训练重量：比二头弯举 重30 %" addonAfter="KG" />
-                        <Input className="input-strength" addonBefore="距离：100 米" addonAfter="米" />
-                    </div>
-                </Form.Item>
+                {detailList.map(item => (
+                    <Form.Item
+                        key={item.id}
+                        label={item.action_name}
+                    >
+                        <div className="input-box">
+                            <Input className="input-strength" addonBefore={item.weight_claim} addonAfter={item.weight_unit} />
+                            <Input className="input-strength" addonBefore={item.frequency_claim} addonAfter={item.frequency_unit} />
+                        </div>
+                    </Form.Item>
+                ))}
             </Form>
         );
     }
