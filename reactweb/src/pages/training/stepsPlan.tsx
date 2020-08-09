@@ -19,8 +19,12 @@ interface state {
 }
 
 class StepsPlan extends Component<{}, state> {
-    componentDidMount() {
-        TrainingApi.getTrainingGroup({ training_date: 'sunday' }).then(res => {
+    state: state = {
+        current: 0,
+        steps: [],
+    }
+    getTrainingGroup(week: string) {
+        TrainingApi.getTrainingGroup({ training_date: week }).then(res => {
             this.setState({ steps: res.data });
         })
     }
@@ -28,20 +32,14 @@ class StepsPlan extends Component<{}, state> {
         const current = this.state.current + 1;
         this.setState({ current });
     }
-
     prev() {
         const current = this.state.current - 1;
         this.setState({ current });
-    }
-    state: state = {
-        current: 0,
-        steps: [],
     }
     render() {
         const { current, steps } = this.state;
         return (<>
             <div className="steps-box">
-
                 <Steps current={current}>
                     {steps.map(item => (
                         <Step key={item.group_times} title={item.title} />
@@ -51,7 +49,6 @@ class StepsPlan extends Component<{}, state> {
                     <EntryPlan></EntryPlan>
                 </div>
                 <div className="steps-action">
-
                     {current > 0 && (
                         <Button style={{ margin: '0 8px' }} onClick={() => this.prev()}>
                             上一步

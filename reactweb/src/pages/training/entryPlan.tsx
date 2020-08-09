@@ -45,7 +45,6 @@ class EntryPlan extends Component<{}, state> {
     getTrainingDetails(item: object | null = null) {
         let param = item || { group_times: '1', training_date: 'sunday' }
         TrainingApi.getTrainingDetails(param).then(res => {
-            console.log("EntryPlan -> componentDidMount -> res.data", res.data)
             this.setState({ detailList: res.data });
         })
     }

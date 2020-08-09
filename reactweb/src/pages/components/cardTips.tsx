@@ -16,7 +16,7 @@ class CardTips extends Component<CardProps, {}> {
     render() {
         return (
             <Card title={this.props.title} bordered={false}>
-                <p>{this.props.content}</p>
+                <div>{this.props.content}</div>
             </Card>
         )
     }
