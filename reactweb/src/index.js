@@ -9,16 +9,23 @@ import ReactLayout from '../src/layout/index'
 import Dashboard from '../src/pages/dashboard/index'
 import Training from '../src/pages/training/index'
 
+// 全局中文配置
+import { ConfigProvider } from 'antd';
+import 'moment/locale/zh-cn';
+import locale from 'antd/es/locale/zh_CN';
+
 ReactDOM.render(
     // <React.StrictMode>
-    <Router>
-        <ReactLayout>
-            <Route path="/" exact component={Dashboard}>
-            </Route>
-            <Route path="/training" component={Training}>
-            </Route>
-        </ReactLayout>
-    </Router>
+    <ConfigProvider locale={locale}>
+        <Router>
+            <ReactLayout>
+                <Route path="/" exact component={Dashboard}>
+                </Route>
+                <Route path="/training" component={Training}>
+                </Route>
+            </ReactLayout>
+        </Router>
+    </ConfigProvider>
     // </React.StrictMode>
     , document.getElementById('root')
 );

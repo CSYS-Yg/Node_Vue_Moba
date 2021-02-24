@@ -1,0 +1,32 @@
+#training-page {}
+
+#training-page .input-box {
+    display: flex;
+}
+
+#training-page .input-strength {
+    margin: 0px 20px 0px 0px;
+}
+
+/* stepsPlan star */
+
+#training-page .steps-action {
+    margin-top: 24px;
+    text-align: right;
+}
+
+#training-page .steps-content {
+    margin-top: 16px;
+    border: 1px dashed #e9e9e9;
+    border-radius: 2px;
+    background-color: #fafafa;
+    min-height: 200px;
+    padding: 40px 0px;
+}
+
+#training-page .steps-box {
+    width: 70%;
+    margin: 0 auto;
+}
+
+/* stepsPlan end */
