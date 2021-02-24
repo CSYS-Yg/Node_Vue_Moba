@@ -1,5 +1,3 @@
-const Deploy = require('./config')
-console.log("🚀 ~ file: index.js ~ line 2 ~ Deploy", Deploy.deploy)
 
 // 引入 express
 
@@ -14,6 +12,7 @@ const mysql = require('mysql');
 const e = require('express');
 
 //实现本地链接
+const Deploy = require('./config')
 const db = mysql.createConnection(Deploy.deploy)
 
 db.connect((err) => {
