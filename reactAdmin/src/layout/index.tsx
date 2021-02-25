@@ -3,24 +3,35 @@
 import './index.css';
 
 import React from 'react';
+import {
+    MenuUnfoldOutlined,
+    MenuFoldOutlined,
+} from '@ant-design/icons';
 import { Layout } from 'antd';
+
+
 
 import MenuList from "./components/MenuList";
 
 import load from '../assets/util/api/load';
 
-const { Header, Content, Footer } = Layout;
+
+const { Header, Content, Sider } = Layout;
 
 interface Layout {
     current: string;
-    menuList: any
+    menuList: any,
+    collapsed: boolean
 }
+
 
 class ReactLayout extends React.Component<Layout, {}> {
     state: Layout = {
         current: '1',
-        menuList: []
+        menuList: [],
+        collapsed: false
     }
+
     componentDidMount() {
         load.getMeunList({}).then((res: any) => {
             this.setState({
@@ -29,6 +40,12 @@ class ReactLayout extends React.Component<Layout, {}> {
             this.getCurrent(window.location.pathname, res.data)
         })
     }
+    // 菜单显示
+    toggle = () => {
+        this.setState({
+            collapsed: !this.state.collapsed,
+        });
+    };
     // 查找菜单 id  
     getCurrent(pathname: string, list: any) {
         if (pathname === '/') {
@@ -46,22 +63,33 @@ class ReactLayout extends React.Component<Layout, {}> {
     }
     render() {
         return (
-            <div>
+            <>
                 <Layout>
-                    <Header style={{ position: 'fixed', zIndex: 1, width: '100%', backgroundColor: '#ffffff', boxShadow: '0 2px 8px #f0f1f2' }}>
+                    <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
                         <div className="logo" />
                         <MenuList list={this.state.menuList}></MenuList>
-                    </Header>
-                    <Content className="site-layout" style={{ padding: '15px', marginTop: 64, backgroundColor: '#f0f2f5' }}>
-                        <div className="site-layout-content">{
-                            React.Children.map(this.props.children, function (child) {
-                                return <div>{child}</div>;
-                            })
-                        }</div>
-                    </Content>
-                    <Footer style={{ width: '100%', textAlign: 'center', position: 'fixed', bottom: 0 }}>BY YuGuangMengYi</Footer>
+                    </Sider>
+                    <Layout className="site-layout">
+                        <Header className="site-layout-background" style={{ padding: 0 }}>
+                            {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                                className: 'trigger',
+                                onClick: this.toggle,
+                            })}
+                        </Header>
+                        <Content className="site-layout-background content-minH"
+                            style={{
+                                margin: '24px 16px',
+                                padding: 24,
+                            }}  >
+                            <div className="site-layout-content">{
+                                React.Children.map(this.props.children, function (child) {
+                                    return <div>{child}</div>;
+                                })
+                            }</div>
+                        </Content>
+                    </Layout >
                 </Layout >
-            </div>
+            </>
         )
     }
 }

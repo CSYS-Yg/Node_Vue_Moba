@@ -5,7 +5,7 @@
     "devDependencies": {},
     "scripts": {
         "serve": "cd server && npm run serve",
-        "serveWeb": "cd reactweb && npm run serve",
+        "serveWeb": "cd reactAdmin && npm run serve",
         "time": "node getTime.js"
     },
     "repository": {
