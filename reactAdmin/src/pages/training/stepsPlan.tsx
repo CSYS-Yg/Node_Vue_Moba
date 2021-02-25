@@ -5,7 +5,7 @@ import { Steps, Button, message } from 'antd';
 import EntryPlan from "./entryPlan";
 
 // 导入接口
-import TrainingApi from '../../assets/util/api/training';
+// import TrainingApi from '../../assets/util/api/training';
 const { Step } = Steps;
 
 // 定于 StepsList 的数组对象的数据项
@@ -24,9 +24,9 @@ class StepsPlan extends Component<{}, state> {
         steps: [],
     }
     getTrainingGroup(week: string) {
-        TrainingApi.getTrainingGroup({ training_date: week }).then(res => {
-            this.setState({ steps: res.data });
-        })
+        // TrainingApi.getTrainingGroup({ training_date: week }).then(res => {
+        //     this.setState({ steps: res.data });
+        // })
     }
     next() {
         const current = this.state.current + 1;

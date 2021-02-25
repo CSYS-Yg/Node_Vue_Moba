@@ -9,14 +9,14 @@ import axios from '../axiosPackage'; // 导入http中创建的axios实例
 
 
 const details: {
-    // getDetailsList: Function,
+    getMeunList: Function,
     // getCategories: Function,
     // postNotifyAuthor: Function,
     // getFilterList: Function
 } = {
-    // getDetailsList: (params: any) => {
-    //     return axios.get('resources', { params: params });
-    // },
+    getMeunList: (params: any) => {
+        return axios.get('getMeunList', { params: params });
+    }
     // getCategories: (params: any) => {
     //     return axios.get('categories', { params: params });
     // },

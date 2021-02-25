@@ -6,20 +6,20 @@
         "@testing-library/jest-dom": "^4.2.4",
         "@testing-library/react": "^9.3.2",
         "@testing-library/user-event": "^7.1.2",
-        "@types/react": "^16.9.43",
-        "@types/react-dom": "^16.9.8",
-        "antd": "^4.4.2",
+        "@types/react": "^16.14.4",
+        "@types/react-dom": "^16.9.11",
+        "antd": "^4.12.3",
         "axios": "^0.19.2",
-        "http-proxy-middleware": "^1.0.5",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1",
+        "http-proxy-middleware": "^1.0.6",
+        "react": "^16.14.0",
+        "react-dom": "^16.14.0",
         "react-router-dom": "^5.2.0",
         "react-scripts": "3.4.1",
-        "typescript": "^3.9.7"
+        "typescript": "^3.9.9"
     },
     "scripts": {
-        "serve": "cross-env NODE_ENV=development set PORT=3001 && react-scripts start",
-        "build": "cross-env NODE_ENV=production react-scripts build",
+        "serve": "set PORT=3001 && react-scripts start",
+        "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
@@ -38,8 +38,5 @@
             "last 1 safari version"
         ]
     },
-    "devDependencies": {
-        "cross-env": "^7.0.3",
-        "qs": "^6.9.6"
-    }
+    "devDependencies": {}
 }

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Form, Input } from 'antd';
 
 // 导入接口
-import TrainingApi from '../../assets/util/api/training';
+// import TrainingApi from '../../assets/util/api/training';
 // 导入规则方法
 // import { setRules } from "../../../assets/util/reuseJs/rules";
 
@@ -44,9 +44,9 @@ class EntryPlan extends Component<{}, state> {
     }
     getTrainingDetails(item: object | null = null) {
         let param = item || { group_times: '1', training_date: 'sunday' }
-        TrainingApi.getTrainingDetails(param).then(res => {
-            this.setState({ detailList: res.data });
-        })
+        // TrainingApi.getTrainingDetails(param).then(res => {
+        //     this.setState({ detailList: res.data });
+        // })
     }
     render() {
         const { detailList } = this.state;

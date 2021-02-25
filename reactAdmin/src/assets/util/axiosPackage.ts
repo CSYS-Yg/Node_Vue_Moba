@@ -1,6 +1,5 @@
 // axios 的封装
 import axios from 'axios'
-import { config } from './config/index'
 import { message } from 'antd'
 
 class Interceptors {
@@ -14,7 +13,7 @@ class Interceptors {
     // 初始化拦截器
     public initInterceptors() {
         // 设置默认 url
-        this.instance.defaults.baseURL = config.baseUrl
+        this.instance.defaults.baseURL = '/api'
         // 设置post请求头
         this.instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
         /** 
