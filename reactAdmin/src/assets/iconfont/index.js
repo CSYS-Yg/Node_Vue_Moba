@@ -5,7 +5,7 @@
 import { createFromIconfontCN } from '@ant-design/icons';
 
 const Icon = createFromIconfontCN({
-    scriptUrl: '//at.alicdn.com/t/font_2380342_qcjyjg5elg.js',
+    scriptUrl: '//at.alicdn.com/t/font_2380342_7zda2yvwm2f.js',
     extraCommonProps: {
         className: 'icon'  //  React 中使用 className
     }
