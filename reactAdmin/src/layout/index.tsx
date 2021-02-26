@@ -37,7 +37,6 @@ class ReactLayout extends React.Component<Layout, {}> {
             this.setState({
                 menuList: res.data
             })
-            this.getCurrent(window.location.pathname, res.data)
         })
     }
     // 菜单显示
@@ -46,21 +45,7 @@ class ReactLayout extends React.Component<Layout, {}> {
             collapsed: !this.state.collapsed,
         });
     };
-    // 查找菜单 id  
-    getCurrent(pathname: string, list: any) {
-        if (pathname === '/') {
-            this.setState({ current: '1' });
-            return
-        }
-        list.forEach((element: any) => {
-            if (element.page_url === pathname) {
-                this.setState({ current: element.id.toString() });
-                return
-            } else if (element.childItem) {
-                this.getCurrent(pathname, element.childItem)
-            }
-        });
-    }
+
     render() {
         return (
             <>
