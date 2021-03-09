@@ -7,6 +7,7 @@ import * as serviceWorker from './serviceWorker';
 
 import ReactLayout from '../src/layout/index'
 import Dashboard from '../src/pages/dashboard/index'
+import ActionType from '../src/pages/train/index'
 // import Training from '../src/pages/training/index'
 
 // 全局中文配置
@@ -20,6 +21,8 @@ ReactDOM.render(
         <Router>
             <ReactLayout>
                 <Route path="/" exact component={Dashboard}>
+                </Route>
+                <Route path="/train/actionType" exact component={ActionType}>
                 </Route>
             </ReactLayout>
         </Router>
