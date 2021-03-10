@@ -7,8 +7,8 @@ import * as serviceWorker from './serviceWorker';
 
 import ReactLayout from '../src/layout/index'
 import Dashboard from '../src/pages/dashboard/index'
-import ActionType from '../src/pages/train/index'
-// import Training from '../src/pages/training/index'
+import ActionType from '../src/pages/train/actionType/index'
+import Menu from '../src/pages/menu/index'
 
 // 全局中文配置
 import { ConfigProvider } from 'antd';
@@ -22,7 +22,9 @@ ReactDOM.render(
             <ReactLayout>
                 <Route path="/" exact component={Dashboard}>
                 </Route>
-                <Route path="/train/actionType" exact component={ActionType}>
+                <Route path="/menu" component={Menu}>
+                </Route>
+                <Route path="/train/actionType" component={ActionType}>
                 </Route>
             </ReactLayout>
         </Router>
