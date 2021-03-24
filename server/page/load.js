@@ -2,20 +2,28 @@
  *  系统第一次必须加载的接口
  */
 
-const getLoadMeunList = (conn, req, res) => {
-    // 递归 拼接菜单
-    let meunList = []
-    const spliceMeun = (parentId, childen) => {
-        for (let i = 0; i < meunList.length; i++) {
-            if (meunList[i].parent_id == parentId) {
-                meunList[i].childItem = []
-                childen.push(meunList[i])
-                spliceMeun(meunList[i].id, meunList[i].childItem)
-            }
-        }
-        return childen
-    }
+const express = require('express')
+const mysqlDB = require('../mysql');
+const router = express.Router()
 
+// 递归 拼接菜单
+let meunList = []
+const spliceMeun = (parentId, childen) => {
+    for (let i = 0; i < meunList.length; i++) {
+        if (meunList[i].parent_id == parentId) {
+            meunList[i].childItem = []
+            childen.push(meunList[i])
+            spliceMeun(meunList[i].id, meunList[i].childItem)
+        }
+    }
+    return childen
+}
+router.use(function timeLog(req, res, next) {
+    console.log('Time: ', Date.now())
+    next()
+})
+
+router.get('/getMeunList', (req, res) => {
     const sql = `
     SELECT
         * 
@@ -24,7 +32,7 @@ const getLoadMeunList = (conn, req, res) => {
     ORDER BY
         sort
     `
-    conn.query(sql, (err, result) => {
+    mysqlDB.query(sql, (err, result) => {
         if (err) {
             console.log(err)
         } else {
@@ -32,6 +40,7 @@ const getLoadMeunList = (conn, req, res) => {
             res.send({ data: spliceMeun(null, []) })
         }
     })
-}
+})
 
-exports.getLoadMeunList = getLoadMeunList
+module.exports = router
+

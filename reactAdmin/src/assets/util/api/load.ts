@@ -15,7 +15,7 @@ const details: {
     // getFilterList: Function
 } = {
     getMeunList: (params: any) => {
-        return axios.get('getMeunList', { params: params });
+        return axios.get('load/getMeunList', { params: params });
     }
     // getCategories: (params: any) => {
     //     return axios.get('categories', { params: params });
