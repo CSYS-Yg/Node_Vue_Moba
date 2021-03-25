@@ -1,10 +1,12 @@
 
+/**
+ *  运动
+ */
 const express = require('express')
 const mysqlDB = require('../mysql');
 const router = express.Router()
 
 router.get('/getTypeList', (req, res) => {
-    console.log(req.url)
     let sql = `
 SELECT
     * 
@@ -19,6 +21,5 @@ FROM
         }
     })
 })
-
 
 module.exports = router

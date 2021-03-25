@@ -13,6 +13,9 @@ const spliceMeun = (parentId, childen) => {
         if (meunList[i].parent_id == parentId) {
             meunList[i].childItem = []
             childen.push(meunList[i])
+            childen.sort(function (a, b) {
+                return a.sort - b.sort;
+            })
             spliceMeun(meunList[i].id, meunList[i].childItem)
         }
     }
@@ -23,14 +26,13 @@ router.use(function timeLog(req, res, next) {
     next()
 })
 
+// 菜单查询
 router.get('/getMeunList', (req, res) => {
     const sql = `
     SELECT
         * 
     FROM
-        menu 
-    ORDER BY
-        sort
+        menu
     `
     mysqlDB.query(sql, (err, result) => {
         if (err) {

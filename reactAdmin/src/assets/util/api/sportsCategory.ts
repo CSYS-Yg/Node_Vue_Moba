@@ -7,7 +7,7 @@ const sportsCategory: {
     // getFilterList: Function
 } = {
     getTypeList: (params: any) => {
-        return axios.get('getTypeList/12', { params: params });
+        return axios.get('getTypeList', { params: params });
     }
     // getCategories: (params: any) => {
     //     return axios.get('categories', { params: params });

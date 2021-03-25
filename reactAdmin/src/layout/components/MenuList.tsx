@@ -10,7 +10,14 @@ interface MenuProps {
     list: any;
 }
 
-class MenuList extends Component<MenuProps, {}> {
+interface State {
+    current: string;
+    subMenukey: string;
+}
+
+
+
+class MenuList extends Component<MenuProps, State> {
     static defaultProps = {
         list: [],
     }
@@ -18,7 +25,6 @@ class MenuList extends Component<MenuProps, {}> {
         current: '1',
         subMenukey: '3',
     };
-
     // 当子组件的 Props 接收值变化时触发，即监控父组件传递值的变化
     componentWillReceiveProps(nextProps: any) {
         this.getCurrent(window.location.pathname, nextProps.list)
